@@ -6,9 +6,12 @@ public class StatementData {
     private Invoice invoice;
     private Plays plays;
 
-    public StatementData(Invoice invoice, Plays plays) {
+    private StatementData(Invoice invoice, Plays plays) {
         this.invoice = invoice;
         this.plays = plays;
+    }
+    public static StatementData createStatementData(Invoice invoice, Plays plays) {
+        return new StatementData(invoice, plays);
     }
 
     public String getCustomer() {

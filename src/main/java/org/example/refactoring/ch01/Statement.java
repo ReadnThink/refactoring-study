@@ -2,13 +2,11 @@ package org.example.refactoring.ch01;
 
 public class Statement {
     public String statement(Invoice invoice, Plays plays) throws Exception {
-        StatementData statementData = new StatementData(invoice, plays);
-        return renderPlanText(statementData, plays);
+        return renderPlanText(StatementData.createStatementData(invoice, plays), plays);
     }
 
     public String htmlStatement(Invoice invoice, Plays plays) throws Exception {
-        StatementData statementData = new StatementData(invoice, plays);
-        return renderHtml(statementData, plays);
+        return renderHtml(StatementData.createStatementData(invoice, plays), plays);
     }
 
     private String renderPlanText(StatementData statementData, Plays plays) throws Exception {

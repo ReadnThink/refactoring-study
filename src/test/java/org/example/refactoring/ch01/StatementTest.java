@@ -68,7 +68,7 @@ class StatementTest {
         Statement statement = new Statement();
 
         // when
-        String actual = statement.statement(invoice, plays);
+        String actual = statement.htmlStatement(invoice, plays);
 
         // then
         assertThat(actual).isEqualTo(expected);

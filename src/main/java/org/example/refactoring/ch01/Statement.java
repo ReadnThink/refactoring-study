@@ -3,18 +3,24 @@ package org.example.refactoring.ch01;
 public class Statement {
     public String statement(Invoice invoice, Plays plays) throws Exception {
         int totalAmount = 0;
-        int volumeCredit = 0;
         StringBuilder result = new StringBuilder();
         result.append(String.format("청구 내역 (고객명: %s)", invoice.getCustomer())).append("\n");
         for(Performance performances : invoice.getPerformances()) {
-            volumeCredit += volumeCreditFor(plays, performances);
-
             result.append(String.format("%s: $%d %d석\n", playFor(plays, performances).getName(), amountFor(performances, plays) / 100, performances.getAudience()));
             totalAmount += amountFor(performances, plays);
         }
+
         result.append(String.format("총액: $%d\n", totalAmount / 100));
-        result.append(String.format("적립 포인트: %d점\n", volumeCredit));
+        result.append(String.format("적립 포인트: %d점\n", getVolumeCredits(invoice, plays)));
         return result.toString();
+    }
+
+    private int getVolumeCredits(Invoice invoice, Plays plays) {
+        int volumeCredit = 0;
+        for(Performance performances : invoice.getPerformances()) {
+            volumeCredit += volumeCreditFor(plays, performances);
+        }
+        return volumeCredit;
     }
 
     private int volumeCreditFor(Plays plays, Performance performances) {

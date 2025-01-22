@@ -1,5 +1,7 @@
 package org.example.refactoring.ch01;
 
+import java.util.List;
+
 public class StatementData {
     private Invoice invoice;
     private Plays plays;
@@ -11,5 +13,12 @@ public class StatementData {
 
     public String getCustomer() {
         return invoice.getCustomer(); 
+    }
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public List<Performance> getPerformances() {
+        return invoice.getPerformances();
     }
 }

@@ -22,7 +22,7 @@ public class StatementData {
         return invoice.getPerformances();
     }
 
-    public Plays getPlays() {
-        return plays;
+    private Play playFor(Plays plays, Performance performances) {
+        return plays.get(performances.getPlayId());
     }
 }

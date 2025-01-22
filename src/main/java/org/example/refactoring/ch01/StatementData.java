@@ -27,36 +27,18 @@ public class StatementData {
         return invoice.getPerformances();
     }
 
-    public Play playFor(Plays plays, Performance performances) {
+    public Play playFor(Performance performances) {
         return plays.get(performances.getPlayId());
     }
 
-    int amountFor(Performance performances, Plays plays) throws Exception {
-        int result;
-        switch (playFor(plays, performances).getType()) {
-            case TRAGEDY :
-                result = 40_000;
-                if(performances.getAudience() > 30) {
-                    result += 1_000 * (performances.getAudience() - 30);
-                }
-                break;
-            case COMEDY :
-                result = 30_000;
-                if(performances.getAudience() > 30) {
-                    result += 10_000 + 500 * (performances.getAudience() - 20);
-                }
-                result += 300 * performances.getAudience();
-                break;
-            default :
-                throw new Exception(String.format("알 수 없는 장르: %s", playFor(plays, performances)));
-        }
-        return result;
+    public int amountFor(Performance performance) throws Exception {
+        return new PerformanceCalculator(performance, playFor(performance)).amountFor();
     }
 
     int getTotalAmount() throws Exception {
         int result = 0;
         for(Performance performances : invoice.getPerformances()) {
-            result += amountFor(performances, plays);
+            result += amountFor(performances);
         }
         return result / 100;
     }
@@ -75,7 +57,7 @@ public class StatementData {
         result += Math.max(performances.getAudience() - 30, 0);
 
         // 희극 관객 5명마다 추가 포인트를 제공한다
-        if(playFor(plays, performances).getType().equals(PlayType.COMEDY)) {
+        if(playFor(performances).getType().equals(PlayType.COMEDY)) {
             result += (performances.getAudience() / 5);
         }
         return result;

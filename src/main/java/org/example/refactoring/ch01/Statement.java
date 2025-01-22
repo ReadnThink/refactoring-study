@@ -17,7 +17,7 @@ public class Statement {
         StringBuilder result = new StringBuilder();
         result.append(String.format("청구 내역 (고객명: %s)", statementData.getCustomer())).append("\n");
         for(Performance performances : statementData.getPerformances()) {
-            result.append(String.format("%s: $%d %d석\n", statementData.playFor(plays, performances).getName(), statementData.amountFor(performances, plays) / 100, performances.getAudience()));
+            result.append(String.format("%s: $%d %d석\n", statementData.playFor(performances).getName(), statementData.amountFor(performances) / 100, performances.getAudience()));
         }
 
         result.append(String.format("총액: $%d\n", statementData.getTotalAmount()));
@@ -30,7 +30,7 @@ public class Statement {
         result.append("<table>\n");
         result.append("<tr><th>연극</th><th>좌석 수</th><th>금액</th></tr>\n");
         for (Performance performances : statementData.getPerformances()) {
-            result.append(String.format("<tr><td>%s</td><td>%d</td><td>%d</td></tr>\n",statementData.playFor(plays, performances).getName(), performances.getAudience(), statementData.amountFor(performances, plays) / 100));
+            result.append(String.format("<tr><td>%s</td><td>%d</td><td>%d</td></tr>\n",statementData.playFor(performances).getName(), performances.getAudience(), statementData.amountFor(performances) / 100));
         }
         result.append("</table>\n");
 

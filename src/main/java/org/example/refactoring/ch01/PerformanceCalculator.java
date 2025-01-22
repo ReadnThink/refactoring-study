@@ -2,6 +2,7 @@ package org.example.refactoring.ch01;
 
 import org.example.refactoring.ch01.data.Performance;
 import org.example.refactoring.ch01.data.Play;
+import org.example.refactoring.ch01.data.PlayType;
 
 public class PerformanceCalculator {
     private Performance performance;
@@ -31,6 +32,18 @@ public class PerformanceCalculator {
             default :
                 throw new Exception(String.format("알 수 없는 장르: %s", play));
         }
+        return result;
+    }
+
+    public int volumeCreditFor() {
+        int result = 0;
+
+        result += Math.max(performance.getAudience() - 30, 0);
+
+        if (play.getType().equals(PlayType.COMEDY)) {
+            result += Math.floor(performance.getAudience() / 5);
+        }
+
         return result;
     }
 }

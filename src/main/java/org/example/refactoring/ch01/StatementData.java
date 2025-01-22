@@ -46,20 +46,12 @@ public class StatementData {
     int totalVolumeCredits() {
         int volumeCredit = 0;
         for(Performance performances : invoice.getPerformances()) {
-            volumeCredit += volumeCreditFor(plays, performances);
+            volumeCredit += volumeCreditFor(performances);
         }
         return volumeCredit;
     }
 
-    private int volumeCreditFor(Plays plays, Performance performances) {
-        int result = 0;
-        // 포인트를 적립한다
-        result += Math.max(performances.getAudience() - 30, 0);
-
-        // 희극 관객 5명마다 추가 포인트를 제공한다
-        if(playFor(performances).getType().equals(PlayType.COMEDY)) {
-            result += (performances.getAudience() / 5);
-        }
-        return result;
+    private int volumeCreditFor(Performance performance) {
+        return new PerformanceCalculator(performance, playFor(performance)).volumeCreditFor();
     }
 }

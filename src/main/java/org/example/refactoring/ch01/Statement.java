@@ -11,11 +11,11 @@ public class Statement {
         }
 
         result.append(String.format("총액: $%d\n", totalAmount / 100));
-        result.append(String.format("적립 포인트: %d점\n", getVolumeCredits(invoice, plays)));
+        result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits(invoice, plays)));
         return result.toString();
     }
 
-    private int getVolumeCredits(Invoice invoice, Plays plays) {
+    private int totalVolumeCredits(Invoice invoice, Plays plays) {
         int volumeCredit = 0;
         for(Performance performances : invoice.getPerformances()) {
             volumeCredit += volumeCreditFor(plays, performances);

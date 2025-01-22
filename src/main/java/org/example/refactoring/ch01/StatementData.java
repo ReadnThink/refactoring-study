@@ -21,4 +21,8 @@ public class StatementData {
     public List<Performance> getPerformances() {
         return invoice.getPerformances();
     }
+
+    public Plays getPlays() {
+        return plays;
+    }
 }

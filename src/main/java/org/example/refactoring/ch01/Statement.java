@@ -2,6 +2,10 @@ package org.example.refactoring.ch01;
 
 public class Statement {
     public String statement(Invoice invoice, Plays plays) throws Exception {
+        return renderPlanText(invoice, plays);
+    }
+
+    private String renderPlanText(Invoice invoice, Plays plays) throws Exception {
         StringBuilder result = new StringBuilder();
         result.append(String.format("청구 내역 (고객명: %s)", invoice.getCustomer())).append("\n");
         for(Performance performances : invoice.getPerformances()) {

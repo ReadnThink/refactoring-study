@@ -1,5 +1,7 @@
 package org.example.refactoring.ch01;
 
+import org.example.refactoring.ch01.data.*;
+
 import java.util.List;
 
 public class StatementData {

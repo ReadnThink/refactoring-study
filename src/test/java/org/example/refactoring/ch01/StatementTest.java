@@ -1,14 +1,13 @@
 package org.example.refactoring.ch01;
 
+import org.example.refactoring.ch01.data.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.prefs.Preferences;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class StatementTest {
 

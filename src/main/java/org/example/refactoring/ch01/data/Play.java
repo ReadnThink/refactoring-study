@@ -1,4 +1,4 @@
-package org.example.refactoring.ch01;
+package org.example.refactoring.ch01.data;
 
 public class Play {
 

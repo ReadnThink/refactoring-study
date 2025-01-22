@@ -1,5 +1,9 @@
 package org.example.refactoring.ch01;
 
+import org.example.refactoring.ch01.data.Invoice;
+import org.example.refactoring.ch01.data.Performance;
+import org.example.refactoring.ch01.data.Plays;
+
 public class Statement {
     public String statement(Invoice invoice, Plays plays) throws Exception {
         return renderPlanText(StatementData.createStatementData(invoice, plays), plays);

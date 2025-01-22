@@ -8,24 +8,7 @@ public class Statement {
         result.append(String.format("청구 내역 (고객명: %s)", invoice.getCustomer())).append("\n");
         for(Performance performances : invoice.getPerformances()) {
             Play play = plays.get(performances.getPlayId());
-            int thisAmount = 0;
-            switch (play.getType()) {
-                case TRAGEDY :
-                    thisAmount = 40_000;
-                    if(performances.getAudience() > 30) {
-                        thisAmount += 1_000 * (performances.getAudience() - 30);
-                    }
-                    break;
-                case COMEDY :
-                    thisAmount = 30_000;
-                    if(performances.getAudience() > 30) {
-                        thisAmount += 10_000 + 500 * (performances.getAudience() - 20);
-                    }
-                    thisAmount += 300 * performances.getAudience();
-                    break;
-                default :
-                    throw new Exception(String.format("알 수 없는 장르: %s", play.getType()));
-            }
+            int thisAmount = amountFor(performances, play);
             // 포인트를 적립한다
             volumeCredits += Math.max(performances.getAudience() - 30, 0);
             // 희극 관객 5명마다 추가 포인트를 제공한다
@@ -38,5 +21,27 @@ public class Statement {
         result.append(String.format("총액: $%d\n", totalAmount / 100));
         result.append(String.format("적립 포인트: %d점\n", volumeCredits));
         return result.toString();
+    }
+
+    private static int amountFor(Performance performances, Play play) throws Exception {
+        int thisAmount;
+        switch (play.getType()) {
+            case TRAGEDY :
+                thisAmount = 40_000;
+                if(performances.getAudience() > 30) {
+                    thisAmount += 1_000 * (performances.getAudience() - 30);
+                }
+                break;
+            case COMEDY :
+                thisAmount = 30_000;
+                if(performances.getAudience() > 30) {
+                    thisAmount += 10_000 + 500 * (performances.getAudience() - 20);
+                }
+                thisAmount += 300 * performances.getAudience();
+                break;
+            default :
+                throw new Exception(String.format("알 수 없는 장르: %s", play.getType()));
+        }
+        return thisAmount;
     }
 }

@@ -47,4 +47,32 @@ public class StatementData {
         }
         return result;
     }
+
+    int getTotalAmount(Invoice invoice, Plays plays) throws Exception {
+        int result = 0;
+        for(Performance performances : invoice.getPerformances()) {
+            result += amountFor(performances, plays);
+        }
+        return result;
+    }
+
+    int totalVolumeCredits(Invoice invoice, Plays plays) {
+        int volumeCredit = 0;
+        for(Performance performances : invoice.getPerformances()) {
+            volumeCredit += volumeCreditFor(plays, performances);
+        }
+        return volumeCredit;
+    }
+
+    private int volumeCreditFor(Plays plays, Performance performances) {
+        int result = 0;
+        // 포인트를 적립한다
+        result += Math.max(performances.getAudience() - 30, 0);
+
+        // 희극 관객 5명마다 추가 포인트를 제공한다
+        if(playFor(plays, performances).getType().equals(PlayType.COMEDY)) {
+            result += (performances.getAudience() / 5);
+        }
+        return result;
+    }
 }

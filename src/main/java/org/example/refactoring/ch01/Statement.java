@@ -18,16 +18,16 @@ public class Statement {
     }
 
     private int volumeCreditFor(Plays plays, Performance performances) {
-        int volumeCredits  = 0;
+        int result  = 0;
 
         // 포인트를 적립한다
-        volumeCredits += Math.max(performances.getAudience() - 30, 0);
+        result += Math.max(performances.getAudience() - 30, 0);
 
         // 희극 관객 5명마다 추가 포인트를 제공한다
         if(playFor(plays, performances).getType().equals(PlayType.COMEDY)) {
-            volumeCredits += (performances.getAudience() / 5);
+            result += (performances.getAudience() / 5);
         }
-        return volumeCredits;
+        return result;
     }
 
     private int amountFor(Performance performances, Plays plays) throws Exception {

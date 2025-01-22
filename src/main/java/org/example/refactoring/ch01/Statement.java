@@ -24,24 +24,24 @@ public class Statement {
     }
 
     private static int amountFor(Performance performances, Play play) throws Exception {
-        int thisAmount;
+        int result;
         switch (play.getType()) {
             case TRAGEDY :
-                thisAmount = 40_000;
+                result = 40_000;
                 if(performances.getAudience() > 30) {
-                    thisAmount += 1_000 * (performances.getAudience() - 30);
+                    result += 1_000 * (performances.getAudience() - 30);
                 }
                 break;
             case COMEDY :
-                thisAmount = 30_000;
+                result = 30_000;
                 if(performances.getAudience() > 30) {
-                    thisAmount += 10_000 + 500 * (performances.getAudience() - 20);
+                    result += 10_000 + 500 * (performances.getAudience() - 20);
                 }
-                thisAmount += 300 * performances.getAudience();
+                result += 300 * performances.getAudience();
                 break;
             default :
                 throw new Exception(String.format("알 수 없는 장르: %s", play.getType()));
         }
-        return thisAmount;
+        return result;
     }
 }

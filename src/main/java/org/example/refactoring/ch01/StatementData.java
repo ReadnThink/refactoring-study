@@ -1,5 +1,6 @@
 package org.example.refactoring.ch01;
 
+import org.example.refactoring.ch01.calculator.PerformanceCalculatorFactory;
 import org.example.refactoring.ch01.data.*;
 
 import java.util.List;
@@ -7,10 +8,12 @@ import java.util.List;
 public class StatementData {
     private Invoice invoice;
     private Plays plays;
+    private PerformanceCalculatorFactory performanceCalculatorFactory;
 
-    private StatementData(Invoice invoice, Plays plays) {
+    public StatementData(Invoice invoice, Plays plays) {
         this.invoice = invoice;
         this.plays = plays;
+        this.performanceCalculatorFactory = new PerformanceCalculatorFactory();
     }
     public static StatementData createStatementData(Invoice invoice, Plays plays) {
         return new StatementData(invoice, plays);
@@ -32,7 +35,7 @@ public class StatementData {
     }
 
     public int amountFor(Performance performance) throws Exception {
-        return new PerformanceCalculator(performance, playFor(performance)).amountFor();
+        return performanceCalculatorFactory.createPerformanceCalculator(performance, playFor(performance)).amountFor();
     }
 
     int getTotalAmount() throws Exception {
@@ -43,7 +46,7 @@ public class StatementData {
         return result / 100;
     }
 
-    int totalVolumeCredits() {
+    int totalVolumeCredits() throws Exception {
         int volumeCredit = 0;
         for(Performance performances : invoice.getPerformances()) {
             volumeCredit += volumeCreditFor(performances);
@@ -51,7 +54,7 @@ public class StatementData {
         return volumeCredit;
     }
 
-    private int volumeCreditFor(Performance performance) {
-        return new PerformanceCalculator(performance, playFor(performance)).volumeCreditFor();
+    private int volumeCreditFor(Performance performance) throws Exception {
+        return performanceCalculatorFactory.createPerformanceCalculator(performance, playFor(performance)).volumeCreditFor();
     }
 }

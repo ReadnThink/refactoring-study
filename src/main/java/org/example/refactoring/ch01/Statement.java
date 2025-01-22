@@ -10,7 +10,7 @@ public class Statement {
         StringBuilder result = new StringBuilder();
         result.append(String.format("청구 내역 (고객명: %s)", statementData.getCustomer())).append("\n");
         for(Performance performances : statementData.getPerformances()) {
-            result.append(String.format("%s: $%d %d석\n", statementData.playFor(plays, performances).getName(), amountFor(performances, plays) / 100, performances.getAudience()));
+            result.append(String.format("%s: $%d %d석\n", statementData.playFor(plays, performances).getName(), statementData.amountFor(performances, plays) / 100, performances.getAudience()));
         }
 
         result.append(String.format("총액: $%d\n", getTotalAmount(statementData.getInvoice(), plays) / 100));

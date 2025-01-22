@@ -13,8 +13,8 @@ public class Statement {
             result.append(String.format("%s: $%d %d석\n", statementData.playFor(plays, performances).getName(), statementData.amountFor(performances, plays) / 100, performances.getAudience()));
         }
 
-        result.append(String.format("총액: $%d\n", statementData.getTotalAmount(statementData.getInvoice(), plays) / 100));
-        result.append(String.format("적립 포인트: %d점\n", statementData.totalVolumeCredits(statementData.getInvoice(), plays)));
+        result.append(String.format("총액: $%d\n", statementData.getTotalAmount()));
+        result.append(String.format("적립 포인트: %d점\n", statementData.totalVolumeCredits()));
         return result.toString();
     }
 
@@ -27,8 +27,8 @@ public class Statement {
         }
         result.append("</table>\n");
 
-        result.append(String.format("<p>총액: <em>%d</em></p>\n", statementData.getTotalAmount(statementData.getInvoice(), plays) / 100));
-        result.append(String.format("<p>적립 포인트: <em>%d</em>점</p>", statementData.totalVolumeCredits(statementData.getInvoice(), plays)));
+        result.append(String.format("<p>총액: <em>%d</em></p>\n", statementData.getTotalAmount()));
+        result.append(String.format("<p>적립 포인트: <em>%d</em>점</p>", statementData.totalVolumeCredits()));
         return result.toString();
     }
 }

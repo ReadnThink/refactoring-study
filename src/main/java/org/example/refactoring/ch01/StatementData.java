@@ -48,15 +48,15 @@ public class StatementData {
         return result;
     }
 
-    int getTotalAmount(Invoice invoice, Plays plays) throws Exception {
+    int getTotalAmount() throws Exception {
         int result = 0;
         for(Performance performances : invoice.getPerformances()) {
             result += amountFor(performances, plays);
         }
-        return result;
+        return result / 100;
     }
 
-    int totalVolumeCredits(Invoice invoice, Plays plays) {
+    int totalVolumeCredits() {
         int volumeCredit = 0;
         for(Performance performances : invoice.getPerformances()) {
             volumeCredit += volumeCreditFor(plays, performances);

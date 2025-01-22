@@ -1,4 +1,4 @@
-package org.example.refactoring.ch01;
+package org.example.refactoring.ch01.refactor;
 
 import org.example.refactoring.ch01.data.Invoice;
 import org.example.refactoring.ch01.data.Performance;

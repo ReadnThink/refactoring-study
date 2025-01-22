@@ -1,6 +1,6 @@
-package org.example.refactoring.ch01;
+package org.example.refactoring.ch01.refactor;
 
-import org.example.refactoring.ch01.calculator.PerformanceCalculatorFactory;
+import org.example.refactoring.ch01.refactor.calculator.PerformanceCalculatorFactory;
 import org.example.refactoring.ch01.data.*;
 
 import java.util.List;

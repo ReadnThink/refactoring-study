@@ -1,6 +1,7 @@
 package org.example.refactoring.ch01;
 
 import org.example.refactoring.ch01.data.*;
+import org.example.refactoring.ch01.refactor.Statement;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

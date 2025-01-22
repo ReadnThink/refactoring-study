@@ -1,7 +1,5 @@
-package org.example.refactoring.ch01;
+package org.example.refactoring.ch01.refactor;
 
-import org.example.refactoring.ch01.calculator.ComedyCalculator;
-import org.example.refactoring.ch01.calculator.TragedyCalculator;
 import org.example.refactoring.ch01.data.Performance;
 import org.example.refactoring.ch01.data.Play;
 import org.example.refactoring.ch01.data.PlayType;
